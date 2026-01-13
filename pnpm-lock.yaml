@@ -5,9 +5,6 @@ settings:
   excludeLinksFromLockfile: false
 
 patchedDependencies:
-  arrpc@3.5.0:
-    hash: 4313fe844324a52ef0453078a86f5d1ee2d4f406331201211020d9fa243323c4
-    path: patches/arrpc@3.5.0.patch
   electron-updater:
     hash: 080505564abb2ebbda932bbf8fe91540c74dd905de994888d52ffce6f882f887
     path: patches/electron-updater.patch
