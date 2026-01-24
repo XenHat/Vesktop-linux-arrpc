@@ -27,7 +27,7 @@
         "postinstall": "pnpm updateArrpcDB"
     },
     "dependencies": {
-        "arrpc": "github:OpenAsar/arrpc#2234e9c9111f4c42ebcc3aa6a2215bfd979eef77",
+        "arrpc": "github:XenHat/arrpc#improved-detection-fixes",
         "electron-updater": "^6.6.2"
     },
     "optionalDependencies": {
@@ -216,7 +216,6 @@
     },
     "pnpm": {
         "patchedDependencies": {
-            "arrpc@3.5.0": "patches/arrpc@3.5.0.patch",
             "electron-updater": "patches/electron-updater.patch"
         },
         "onlyBuiltDependencies": [
