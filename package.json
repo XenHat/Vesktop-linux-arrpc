@@ -215,9 +215,6 @@
         }
     },
     "pnpm": {
-        "patchedDependencies": {
-            "electron-updater": "patches/electron-updater.patch"
-        },
         "onlyBuiltDependencies": [
             "@vencord/venmic",
             "electron",

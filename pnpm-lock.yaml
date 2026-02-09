@@ -4,11 +4,6 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-patchedDependencies:
-  electron-updater:
-    hash: 080505564abb2ebbda932bbf8fe91540c74dd905de994888d52ffce6f882f887
-    path: patches/electron-updater.patch
-
 importers:
 
   .:
