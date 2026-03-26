@@ -30,6 +30,9 @@ importers:
       '@vencord/types':
         specifier: ^1.14.1
         version: 1.14.1(@types/react-dom@18.3.1)(@types/react@19.2.9)
+      app-builder-lib:
+        specifier: ^26.8.1
+        version: 26.8.1(dmg-builder@26.8.1)(electron-builder-squirrel-windows@25.1.8)
       dotenv:
         specifier: ^17.3.1
         version: 17.3.1
