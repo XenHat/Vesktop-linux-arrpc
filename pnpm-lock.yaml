@@ -5,9 +5,6 @@ settings:
   excludeLinksFromLockfile: false
 
 patchedDependencies:
-  arrpc@3.5.0:
-    hash: 4313fe844324a52ef0453078a86f5d1ee2d4f406331201211020d9fa243323c4
-    path: patches/arrpc@3.5.0.patch
   electron-updater:
     hash: 080505564abb2ebbda932bbf8fe91540c74dd905de994888d52ffce6f882f887
     path: patches/electron-updater.patch
@@ -17,8 +14,8 @@ importers:
   .:
     dependencies:
       arrpc:
-        specifier: github:OpenAsar/arrpc#2234e9c9111f4c42ebcc3aa6a2215bfd979eef77
-        version: https://codeload.github.com/OpenAsar/arrpc/tar.gz/2234e9c9111f4c42ebcc3aa6a2215bfd979eef77(patch_hash=4313fe844324a52ef0453078a86f5d1ee2d4f406331201211020d9fa243323c4)
+        specifier: github:XenHat/arrpc#improved-detection-fixes
+        version: https://codeload.github.com/XenHat/arrpc/tar.gz/95cf61d2e24ca63111bcf0d45d8338d94743cd31
       electron-updater:
         specifier: ^6.6.2
         version: 6.6.2(patch_hash=080505564abb2ebbda932bbf8fe91540c74dd905de994888d52ffce6f882f887)
@@ -569,6 +566,7 @@ packages:
   '@xmldom/xmldom@0.8.11':
     resolution: {integrity: sha512-cQzWCtO6C8TQiYl1ruKNn2U6Ao4o4WBBcbL61yJl84x+j5sOWWFU9X7DpND8XZG3daDppSsigMdfAIl2upQBRw==}
     engines: {node: '>=10.0.0'}
+    deprecated: this version has critical issues, please update to the latest version
 
   abbrev@1.1.1:
     resolution: {integrity: sha512-nne9/IiQ/hzIhY6pdDnbBtz7DjPTKrY00P/zvPSm5pOFkl6xuGrGnXn/VtTNNfNtAfZ9/1RtehkszU9qcTii0Q==}
@@ -714,9 +712,9 @@ packages:
     resolution: {integrity: sha512-BNoCY6SXXPQ7gF2opIP4GBE+Xw7U+pHMYKuzjgCN3GwiaIR09UUeKfheyIry77QtrCBlC0KK0q5/TER/tYh3PQ==}
     engines: {node: '>= 0.4'}
 
-  arrpc@https://codeload.github.com/OpenAsar/arrpc/tar.gz/2234e9c9111f4c42ebcc3aa6a2215bfd979eef77:
-    resolution: {tarball: https://codeload.github.com/OpenAsar/arrpc/tar.gz/2234e9c9111f4c42ebcc3aa6a2215bfd979eef77}
-    version: 3.5.0
+  arrpc@https://codeload.github.com/XenHat/arrpc/tar.gz/95cf61d2e24ca63111bcf0d45d8338d94743cd31:
+    resolution: {tarball: https://codeload.github.com/XenHat/arrpc/tar.gz/95cf61d2e24ca63111bcf0d45d8338d94743cd31}
+    version: 3.7.0
     hasBin: true
 
   assert-plus@1.0.0:
@@ -3031,8 +3029,8 @@ packages:
   wrappy@1.0.2:
     resolution: {integrity: sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ==}
 
-  ws@8.18.0:
-    resolution: {integrity: sha512-8VbfWfHLbbwu3+N6OKsOMpBdT4kXPDDB9cJk2bJ6mh9ucxdlnNvH1e+roYkKmN9Nxw2yjz7VzeO9oOz2zJ04Pw==}
+  ws@8.20.0:
+    resolution: {integrity: sha512-sAt8BhgNbzCtgGbt2OxmpuryO63ZoDk/sqaB/znQm94T4fCEsy/yV+7CdC1kJhOU9lboAEU7R3kquuycDoibVA==}
     engines: {node: '>=10.0.0'}
     peerDependencies:
       bufferutil: ^4.0.1
@@ -3868,9 +3866,9 @@ snapshots:
       get-intrinsic: 1.3.0
       is-array-buffer: 3.0.5
 
-  arrpc@https://codeload.github.com/OpenAsar/arrpc/tar.gz/2234e9c9111f4c42ebcc3aa6a2215bfd979eef77(patch_hash=4313fe844324a52ef0453078a86f5d1ee2d4f406331201211020d9fa243323c4):
+  arrpc@https://codeload.github.com/XenHat/arrpc/tar.gz/95cf61d2e24ca63111bcf0d45d8338d94743cd31:
     dependencies:
-      ws: 8.18.0
+      ws: 8.20.0
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
@@ -6738,7 +6736,7 @@ snapshots:
 
   wrappy@1.0.2: {}
 
-  ws@8.18.0: {}
+  ws@8.20.0: {}
 
   xml-formatter@3.6.7:
     dependencies:
