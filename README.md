@@ -29,7 +29,7 @@ You need to have the following dependencies installed:
 Packaging will create builds in the dist/ folder
 
 ```sh
-git clone https://github.com/Vencord/Vesktop
+git clone https://github.com/XenHat/Vesktop-linux-arrpc
 cd Vesktop
 
 # Install Dependencies

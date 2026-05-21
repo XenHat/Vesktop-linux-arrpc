@@ -216,7 +216,7 @@
     },
     "pnpm": {
         "patchedDependencies": {
-            "electron-updater": "patches/electron-updater.patch"
+            "electron-updater": "/home/xenhat/Projects/src/Vesktop/patches/electron-updater.patch"
         },
         "onlyBuiltDependencies": [
             "@vencord/venmic",
