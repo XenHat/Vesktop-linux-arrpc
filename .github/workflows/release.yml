@@ -1,5 +1,8 @@
 name: Release
 
+env:
+    FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 on:
     push:
         tags:
@@ -16,11 +19,11 @@ jobs:
                 os: [ubuntu-latest]
                 include:
                     # - os: macos-latest
-                      # platform: mac
+                    # platform: mac
                     - os: ubuntu-latest
                       platform: linux
                     # - os: windows-latest
-                      # platform: windows
+                    # platform: windows
 
         steps:
             - uses: actions/checkout@v4
