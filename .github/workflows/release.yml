@@ -50,12 +50,6 @@ jobs:
               run: |
                   echo "$API_KEY" > apple.p8
                   pnpm electron-builder --${{ matrix.platform }} --publish always
-            - name: Upload Build Artifacts
-              uses: softprops/action-gh-release@v2
-              if: startsWith(github.ref, 'refs/tags/')
-              with:
-                  files: |
-                      dist/*.AppImage
               env:
                   GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                   CSC_LINK: ${{ secrets.APPLE_SIGNING_CERT }}
@@ -64,3 +58,9 @@ jobs:
                   APPLE_API_KEY: apple.p8
                   APPLE_API_KEY_ID: ${{ secrets.APPLE_API_KEY_ID }}
                   APPLE_API_ISSUER: ${{ secrets.APPLE_API_ISSUER }}
+            - name: Upload Build Artifacts
+              uses: softprops/action-gh-release@v2
+              if: startsWith(github.ref, 'refs/tags/')
+              with:
+                  files: |
+                      dist/*.AppImage
