@@ -15,7 +15,7 @@ importers:
     dependencies:
       arrpc:
         specifier: github:XenHat/arrpc#improved-detection-fixes
-        version: https://codeload.github.com/XenHat/arrpc/tar.gz/95cf61d2e24ca63111bcf0d45d8338d94743cd31
+        version: https://codeload.github.com/XenHat/arrpc/tar.gz/d2ecb61697f3986149350078dd9853592a9086ea
       electron-updater:
         specifier: ^6.6.2
         version: 6.6.2(patch_hash=080505564abb2ebbda932bbf8fe91540c74dd905de994888d52ffce6f882f887)
@@ -712,8 +712,8 @@ packages:
     resolution: {integrity: sha512-BNoCY6SXXPQ7gF2opIP4GBE+Xw7U+pHMYKuzjgCN3GwiaIR09UUeKfheyIry77QtrCBlC0KK0q5/TER/tYh3PQ==}
     engines: {node: '>= 0.4'}
 
-  arrpc@https://codeload.github.com/XenHat/arrpc/tar.gz/95cf61d2e24ca63111bcf0d45d8338d94743cd31:
-    resolution: {tarball: https://codeload.github.com/XenHat/arrpc/tar.gz/95cf61d2e24ca63111bcf0d45d8338d94743cd31}
+  arrpc@https://codeload.github.com/XenHat/arrpc/tar.gz/d2ecb61697f3986149350078dd9853592a9086ea:
+    resolution: {tarball: https://codeload.github.com/XenHat/arrpc/tar.gz/d2ecb61697f3986149350078dd9853592a9086ea}
     version: 3.7.0
     hasBin: true
 
@@ -3866,7 +3866,7 @@ snapshots:
       get-intrinsic: 1.3.0
       is-array-buffer: 3.0.5
 
-  arrpc@https://codeload.github.com/XenHat/arrpc/tar.gz/95cf61d2e24ca63111bcf0d45d8338d94743cd31:
+  arrpc@https://codeload.github.com/XenHat/arrpc/tar.gz/d2ecb61697f3986149350078dd9853592a9086ea:
     dependencies:
       ws: 8.20.0
     transitivePeerDependencies:
