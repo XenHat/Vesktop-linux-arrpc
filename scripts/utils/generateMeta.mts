@@ -52,7 +52,7 @@ const releases = await fetch("https://api.github.com/repos/XenHat/Vesktop-linux-
 
 const latestReleaseInformation = releases[0];
 
-const metaInfo = await (async () => {
+let metaInfo = await (async () => {
     for (const release of releases) {
         const metaAsset = release.assets.find((a: any) => a.name === "dev.vencord.Vesktop.metainfo.xml");
         if (metaAsset) return fetch(metaAsset.browser_download_url).then(res => res.text());
@@ -60,7 +60,37 @@ const metaInfo = await (async () => {
 })();
 
 if (!metaInfo) {
-    throw new Error("Could not find existing meta information from any release");
+    // Try upstream releases as fallback
+    const upstreamReleases = await fetch("https://api.github.com/repos/Vencord/Vesktop/releases", {
+        headers: {
+            Accept: "application/vnd.github+json",
+            "X-Github-Api-Version": "2022-11-28"
+        }
+    }).then(res => res.json() as any);
+
+    for (const release of upstreamReleases) {
+        const metaAsset = release.assets.find((a: any) => a.name === "dev.vencord.Vesktop.metainfo.xml");
+        if (metaAsset) {
+            metaInfo = await fetch(metaAsset.browser_download_url).then(res => res.text());
+            break;
+        }
+    }
+
+    if (!metaInfo) {
+        console.log("No existing meta information found, creating fresh metainfo.xml");
+        metaInfo = `<?xml version="1.0" encoding="utf-8"?>
+<component type="desktop-application">
+  <id>dev.vencord.Vesktop</id>
+  <name>Vesktop</name>
+  <summary>Customizable Discord client</summary>
+  <developer_name>Vencord Contributors</developer_name>
+  <launchable type="desktop-id">dev.vencord.Vesktop.desktop</launchable>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0-or-2</project_license>
+  <project_group>Vencord</project_group>
+  <releases/>
+</component>`;
+    }
 }
 
 const parser = new DOMParser().parseFromString(metaInfo, "text/xml");
