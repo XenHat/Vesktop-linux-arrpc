@@ -15,9 +15,19 @@ import { handle } from "./utils/ipcWrappers";
 import { makeLinksOpenExternally } from "./utils/makeLinksOpenExternally";
 import { loadView } from "./vesktopStatic";
 
+const SEMVER_RE = /^\d+\.\d+\.\d+(?:-[a-zA-Z0-9.]+)?(?:\+[a-zA-Z0-9.]+)?$/;
+/**
+ * On some providers (e.g., when a GitHub release has a non-semver tag like
+ * "latest"), electron-updater may feed `semver.lt()` an invalid version string,
+ * throwing `TypeError: Invalid Version: latest`.  Catch those silently to avoid
+ * spamming the console.
+ */
+const SEMVER_ERROR_RE = /Invalid Version: /;
+
 let updaterWindow: BrowserWindow | null = null;
 
 autoUpdater.on("update-available", update => {
+    if (!SEMVER_RE.test(update.version)) return;
     if (State.store.updater?.ignoredVersion === update.version) return;
     if ((State.store.updater?.snoozeUntil ?? 0) > Date.now()) return;
 
@@ -28,18 +38,27 @@ autoUpdater.on("update-downloaded", () => setTimeout(() => autoUpdater.quitAndIn
 autoUpdater.on("download-progress", p =>
     updaterWindow?.webContents.send(UpdaterIpcEvents.DOWNLOAD_PROGRESS, p.percent)
 );
-autoUpdater.on("error", err => updaterWindow?.webContents.send(UpdaterIpcEvents.ERROR, err.message));
+autoUpdater.on("error", err => {
+    if (SEMVER_ERROR_RE.test(err.message)) return;
+    console.error("Updater error:", err.message);
+    updaterWindow?.webContents.send(UpdaterIpcEvents.ERROR, err.message);
+});
 
 autoUpdater.autoDownload = false;
 autoUpdater.autoInstallOnAppQuit = false;
 autoUpdater.fullChangelog = true;
 
-const isOutdated = autoUpdater.checkForUpdates().then(res => Boolean(res?.isUpdateAvailable));
+const isOutdated = autoUpdater
+    .checkForUpdates()
+    .then(res => Boolean(res?.isUpdateAvailable))
+    .catch(() => false);
 
 handle(IpcEvents.UPDATER_IS_OUTDATED, () => isOutdated);
 handle(IpcEvents.UPDATER_OPEN, async () => {
-    const res = await autoUpdater.checkForUpdates();
-    if (res?.isUpdateAvailable && res.updateInfo) openUpdater(res.updateInfo);
+    try {
+        const res = await autoUpdater.checkForUpdates();
+        if (res?.isUpdateAvailable && res.updateInfo) openUpdater(res.updateInfo);
+    } catch {}
 });
 
 function openUpdater(update: UpdateInfo) {
