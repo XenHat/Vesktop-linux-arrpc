@@ -5,8 +5,7 @@ settings:
   excludeLinksFromLockfile: false
 
 patchedDependencies:
-  electron-updater:
-    hash: 080505564abb2ebbda932bbf8fe91540c74dd905de994888d52ffce6f882f887
+  electron-updater: 080505564abb2ebbda932bbf8fe91540c74dd905de994888d52ffce6f882f887
 
 importers:
 
@@ -16,7 +15,7 @@ importers:
         specifier: github:XenHat/arrpc#improved-detection-fixes
         version: https://codeload.github.com/XenHat/arrpc/tar.gz/d2ecb61697f3986149350078dd9853592a9086ea
       electron-updater:
-        specifier: 6.6.2
+        specifier: ^6.6.2
         version: 6.6.2(patch_hash=080505564abb2ebbda932bbf8fe91540c74dd905de994888d52ffce6f882f887)
     devDependencies:
       '@fal-works/esbuild-plugin-global-externals':
@@ -676,7 +675,7 @@ packages:
     engines: {node: '>= 0.4'}
 
   arrpc@https://codeload.github.com/XenHat/arrpc/tar.gz/d2ecb61697f3986149350078dd9853592a9086ea:
-    resolution: {tarball: https://codeload.github.com/XenHat/arrpc/tar.gz/d2ecb61697f3986149350078dd9853592a9086ea}
+    resolution: {gitHosted: true, integrity: sha512-SMAGy+Li3QjABtWQT0mWf/sKxp8cCGnA450E6dQT5h4k9kKdKDxKj5P++WCL93tWQA+1KCD61kfU23UiSxr22g==, tarball: https://codeload.github.com/XenHat/arrpc/tar.gz/d2ecb61697f3986149350078dd9853592a9086ea}
     version: 3.7.0
     hasBin: true
 
