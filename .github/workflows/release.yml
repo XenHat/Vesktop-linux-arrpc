@@ -35,12 +35,6 @@ jobs:
             - name: Install dependencies
               run: pnpm install --frozen-lockfile
 
-            - name: Install LibVesktop dependencies
-              run: sudo apt update && sudo apt install build-essential python3 curl pkg-config libglib2.0-dev
-
-            - name: build LibVesktop
-              run: pnpm build LibVesktop
-
             - name: Build
               run: pnpm build
 
