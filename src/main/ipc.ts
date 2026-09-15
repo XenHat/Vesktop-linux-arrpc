@@ -20,13 +20,13 @@ import {
 } from "electron";
 import { readFileSync, watch } from "fs";
 import { readFile, stat } from "fs/promises";
-import { enableHardwareAcceleration } from "main";
 import { release } from "os";
 import { join } from "path";
 
 import { IpcEvents } from "../shared/IpcEvents";
 import { setBadgeCount } from "./appBadge";
 import { autoStart } from "./autoStart";
+import { enableHardwareAcceleration } from "./main";
 import { mainWin } from "./mainWindow";
 import { Settings, State } from "./settings";
 import { handle, handleSync } from "./utils/ipcWrappers";
@@ -149,7 +149,7 @@ handle(IpcEvents.SELECT_VENCORD_DIR, async (_e, value?: null) => {
     if (!res.filePaths.length) return "cancelled";
 
     const dir = res.filePaths[0];
-    if (!isValidVencordInstall(dir)) return "invalid";
+    if (!(await isValidVencordInstall(dir))) return "invalid";
 
     State.store.vencordDir = dir;
 

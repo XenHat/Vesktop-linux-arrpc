@@ -13,3 +13,4 @@ packages:
   - packages/*
 minimumReleaseAgeExclude:
   - electron
+  - '@vencord/*'
