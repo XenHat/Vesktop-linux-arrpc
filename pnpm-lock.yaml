@@ -5,7 +5,8 @@ settings:
   excludeLinksFromLockfile: false
 
 patchedDependencies:
-  electron-updater: 080505564abb2ebbda932bbf8fe91540c74dd905de994888d52ffce6f882f887
+  electron-updater: a4f99c134b335024038b5c1c926e7e570e20e5de07b23be5176daaee00365ed4
+
 importers:
 
   .:
@@ -14,8 +15,8 @@ importers:
         specifier: github:XenHat/arrpc#improved-detection-fixes
         version: https://codeload.github.com/XenHat/arrpc/tar.gz/d2ecb61697f3986149350078dd9853592a9086ea
       electron-updater:
-        specifier: 6.6.2
-        version: 6.6.2(patch_hash=a4f99c134b335024038b5c1c926e7e570e20e5de07b23be5176daaee00365ed4)
+        specifier: ^6.6.2
+        version: 6.6.2(patch_hash=a4f99c134b335024038b5c1c926e7e570e20e5de07b23be5176daaee00365ed4)(supports-color@7.2.0)
     devDependencies:
       '@fal-works/esbuild-plugin-global-externals':
         specifier: ^2.1.2
@@ -3945,7 +3946,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  electron-updater@6.6.2(patch_hash=080505564abb2ebbda932bbf8fe91540c74dd905de994888d52ffce6f882f887)(supports-color@7.2.0):
+  electron-updater@6.6.2(patch_hash=a4f99c134b335024038b5c1c926e7e570e20e5de07b23be5176daaee00365ed4)(supports-color@7.2.0):
     dependencies:
       builder-util-runtime: 9.3.1(supports-color@7.2.0)
       fs-extra: 10.1.0
