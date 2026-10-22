@@ -198,7 +198,9 @@
             ]
         },
         "publish": {
-            "provider": "github"
+            "provider": "github",
+            "owner": "XenHat",
+            "repo": "Vesktop-linux-arrpc"
         },
         "rpm": {
             "fpm": [
