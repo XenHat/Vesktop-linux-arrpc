@@ -2,7 +2,23 @@ diff --git a/out/providers/GitHubProvider.js b/out/providers/GitHubProvider.js
 index 3202ca7ca374ad2c7e69f2b91c4e8be767136afe..6238739baef16aa6bb85d63b774b2492ba0a0f37 100644
 --- a/out/providers/GitHubProvider.js
 +++ b/out/providers/GitHubProvider.js
-@@ -186,7 +186,7 @@ function computeReleaseNotes(currentVersion, isFullChangelog, feed, latestReleas
+@@ -145,12 +145,10 @@ class GitHubProvider extends BaseGitHubProvider {
+     }
+     async getLatestTagName(cancellationToken) {
+         const options = this.options;
+-        // do not use API for GitHub to avoid limit, only for custom host or GitHub Enterprise
+-        const url = options.host == null || options.host === "github.com"
+-            ? (0, util_1.newUrlFromBase)(`${this.basePath}/latest`, this.baseUrl)
+-            : new url_1.URL(`${this.computeGithubBasePath(`/repos/${options.owner}/${options.repo}/releases`)}/latest`, this.baseApiUrl);
++        // always use the GitHub API endpoint for releases/latest to avoid 406 errors from HTML redirect
++        const url = new url_1.URL(`${this.computeGithubBasePath(`/repos/${options.owner}/${options.repo}/releases`)}/latest`, this.baseApiUrl);
+         try {
+-            const rawData = await this.httpRequest(url, { Accept: "application/json" }, cancellationToken);
++            const rawData = await this.httpRequest(url, { Accept: "application/vnd.github+json" }, cancellationToken);
+             if (rawData == null) {
+                 return null;
+             }
+@@ -186,7 +184,7 @@ function computeReleaseNotes(currentVersion, isFullChangelog, feed, latestRelease) {
      for (const release of feed.getElements("entry")) {
          // noinspection TypeScriptValidateJSTypes
          const versionRelease = /\/tag\/v?([^/]+)$/.exec(release.element("link").attribute("href"))[1];
