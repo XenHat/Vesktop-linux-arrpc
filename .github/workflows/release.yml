@@ -7,8 +7,19 @@ on:
         tags:
             - v*
     workflow_dispatch:
+    workflow_run:
+        workflows: ["test"] # Put the exact 'name:' of your first workflow here
+        types:
+            - completed
 
 jobs:
+    on-success:
+        # Crucial step: This ensures it only runs if the first workflow succeeded, not failed
+        if: ${{ github.event.workflow_run.conclusion == 'success' }}
+        runs-on: ubuntu-latest
+        steps:
+            - name: Run dependent tasks
+              run: echo "The primary workflow passed. Running release..."
     release:
         runs-on: ${{ matrix.os }}
 
