@@ -51,6 +51,20 @@ jobs:
             - name: Build
               run: pnpm build
 
+            - name: Check if release exists
+              id: check-release
+              if: ${{ matrix.platform != 'mac' }}
+              run: |
+                  TAG=${{ github.ref }}
+                  TAG=${TAG#refs/tags/}
+                  curl -s "https://api.github.com/repos/${{ github.repository }}/releases/tags/v${TAG}" \
+                      -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+                      > /tmp/release-check.json
+                  if grep -q '"tag_name"' /tmp/release-check.json; then
+                      echo "Release already exists, skipping publish"
+                      exit 0
+                  fi
+
             - name: Package and upload (Win/Lin)
               if: ${{ matrix.platform != 'mac' }}
               run: |
